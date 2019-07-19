@@ -1,0 +1,7 @@
+mov ax, 1300 =>zorgt voor de posite van de string
+mov dx,1020 => zorgt voor de plaats van het woord
+mov bl, 53 => zorgt voor de kleur van de string(eerste cijfer achtergrond
+mov bp, 120 => kijkt naar waar hij tekst moet gaan halen
+mov cx, 5 =>zorgt voor he aantal charcters dat wordne aangepast
+int 10 => zorgt voor een interupt 10 dus kleur
+int 20 => stopt het programma

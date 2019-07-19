@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fictieve Floating Point</title>
+<meta charset="utf-8" />
+<script type="text/javascript">
+var getal = null;
+var teken = null;
+var exponent = null;
+var mantissa = null;
+var waarde = 0;
+var exponent=0;
+
+function splitsFloat() {
+var getal = document.getElementById('invoer').value;
+document.getElementById('teken').value=getal.substring(0,1);
+document.getElementById('exponent').value=getal.substring(1,3);
+document.getElementById('mantissa').value=getal.substring(3,8);
+}
+
+function uitlegFloat() {
+teken = document.getElementById('teken').value;
+exponent = document.getElementById('exponent').value;
+mantissa = document.getElementById('mantissa').value;
+
+// verwerk het teken
+if (teken == '0') {
+  document.getElementById('teken_uitleg').value="Het is een positief getal";
+  teken = "+";
+} else {
+  document.getElementById('teken_uitleg').value="Het is een negatief getal";
+  teken = "-";
+}
+
+// verwerk de exponent
+	waarde= parseInt(exponent,2); //parseInt zet een string om naar een integer, optioneel kan de basis meegegeven worden
+	document.getElementById('exponent_uitleg').value="De exponent is "+waarde+", in plus-2 notatie dus "+(waarde-2);
+
+
+// verwerk de mantissa
+document.getElementById('mantissa_uitleg').value="Met de impiciete M0 op 1 geeft dit 1,"+mantissa;
+}
+
+function verwerkFloat() {
+exponent=waarde-2;
+document.getElementById('verwerking').value="Het binair kommagetal is dus = "+teken+"1,"+mantissa+"x2^"+exponent;
+}
+
+function verwerkFloat2() {
+  waarde=1; //impliciete MO op 1
+  
+	if (exponent == -2 && mantissa == '00000') {
+	  waarde = 0;
+	  } else {
+	    
+		var teller = parseInt(mantissa,2);
+		var noemer = Math.pow(2,mantissa.length);
+		waarde= (waarde + (teller / noemer)) * Math.pow(2,exponent);
+	  }
+	if (teken == '-') {
+	  waarde = waarde * -1;
+	  }
+	  
+  document.getElementById('verwerking2').value="De decimale waarde is = "+waarde;
+}
+</script>
+</head>
+<body>
+<header>
+<h2>De fictieve Floating Point uit de cursus Computer Systems</h2>
+</header>
+<section>
+<table>
+<tr>
+    <td>Fictieve float in (8 bits)</td>
+    <td colspan="2"><input type="text" size="10" maxlength="8" id="invoer" /></td>
+</tr>
+<tr>
+    <td>Teken</td>
+    <td><input type="text" size="1" id="teken" /></td>
+    <td><input type="text" size="50" id="teken_uitleg" /></td>
+</tr>
+<tr>
+<td>Exponent</td>
+    <td><input type="text" size="2" id="exponent" /></td>
+    <td><input type="text" size="50" id="exponent_uitleg" /></td>
+</tr>
+<tr>
+<td>Mantissa</td>
+    <td><input type="text" size="5" id="mantissa" /></td>
+    <td><input type="text" size="50" id="mantissa_uitleg" /></td>
+</tr>
+<tr>
+    <td>Verwerking</td>
+    <td colspan="2"><input type="text" size="50" id="verwerking" /></td>
+</tr>
+<tr>
+    <td>Decimaal</td>
+    <td colspan="2"><input type="text" size="50" id="verwerking2" /></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td><input type="button"  value="Stap 1 = splits op" onclick="splitsFloat()" /></td>
+<td><input type="button"  value="Stap 2 = uitleg   " onclick="uitlegFloat()" /></td>
+<td><input type="button"  value="Stap 3 = verwerk  " onclick="verwerkFloat()" /></td>
+<td><input type="button"  value="Stap 4 = decimaal " onclick="verwerkFloat2()" /></td>
+</tr>
+</table>
+</section>
+<footer>
+<p>&copy; Johan Cleuren 2013</p>
+</footer>
+</body></html>

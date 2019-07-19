@@ -1,0 +1,14 @@
+mov ah,2
+mov cx,14
+push cx
+mov cx,28
+mov dl,5
+int 21
+loop 010b
+mov dl,a
+int 21
+mov dl,d
+int 21
+pop cx
+loop 105
+int 20

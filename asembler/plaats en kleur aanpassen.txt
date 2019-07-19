@@ -1,0 +1,13 @@
+mov ax,1300 => zortg voor de positie
+mov dx,0505 => zorgt voor de positie
+mov bp,0130 => neemt de tekst van de de juiste positei
+mov bl,10 => zorgt voor de kleur van de tekst
+mov cx, 000a =>hoevaak het programmamoet worden uitgeoved worden
+push cx => zet de waarde van cx in eenmov  register
+mov cx,5 => zet cx op 5 het aantal chaterters van de tst
+int 10 => int voor string met kleur
+add bl,11 => voegt aan bl 11 aan toe dus je verander de kleur
+add dx,0100 => voegt aan dx 0100 toe dus je voert een enter toe
+pop cx => haalt de cx teerug uit het register dus de 1
+loop 010e => maakt een loop terug naar pop cx
+int 20 => beindigd het bestand

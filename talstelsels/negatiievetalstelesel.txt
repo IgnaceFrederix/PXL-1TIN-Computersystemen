@@ -1,0 +1,82 @@
+Negatieve binaire getallen
+---------------------------------------
+Teken en grootte 
+-----------------------
+ |8| = 0000 1000
+ +8 = 0000 1000
+ -8 = 1000 1000
+Bij teken en grootte word de meeste linkse bit gepakt om te bepalen of het getal positief of negatief is. Als het het binair getal begint met een 0 is het een positief getal en als het begint met een 1 is het een negatief getal.
+Let wel op dat de 1 hier enkel een betekenis heeft als een teken en dus niet als een waarde dus
+-8 = 1000 1000 en dus niet 136 want bij een 8 bit is het grootste getal dat dt je positief kan hebben 127 en als het groter is dan moet je een 16 bit gebruiken en onder 0 hetzelfde.
+In dit stelsel is er zowel een positieve als een negatieve 0 
+-0 = 1000 0000
++0 = 0000 0000
+Dit stelsel kan wel niet gebruikt worden om twee binaire getallen met elkaar opte tellen.
+
+------------------------------------------------------------
+De plus n-notatie
+----------------------------------------------------------------
+In dit stelsel word er een reeks bits gepakt bv 4 bits(plus8 notatie) en word de linkse bit op 1 gezet en word dat getal gekapt als 0 als het getal groter dan dat getal dan is het boven 0 anders is het onder 0
+(plus8)1000 => 0
++2 = 8+2 = 10 => 1010
+-2 = 8-2 = 6 => 0110
+-4 = 8-4 = 4 => 0010
+
+andersom doe je het op bijna dezelfde manier je telt alle bits op zoals bij een absouute getal en doe dan min het stelsel dus -8 in dit voorbeeld
+(plus8)
+1110 => 8+4+2 => 14-8 = +6
+1001 => 8+1 => 9-8 = +1
+0010 => 2 => 2-8 = -6
+
+in dit stelsel is er maar een waarde voor 0 (in dit voorbeeld 1000 maar dat is in elke keuze anders)
+Dit stelsel kan wel niet gebruikt worden om twee binaire getallen met elkaar opte tellen.
+
+
+------------------------------------------------------------------------------------------------
+de twee complementenotatie
+-----------------------------------------------------------------------------------------
+in dit talstels is het voor de positieve getallen het zelfde als bij absolute getallen dus +8 is:
+0000 1000
+want als je gewoon schrijf  1000 is het niet +8 maar -8 omdat als het meest linkse getal een 1 is dan is het een negatief getal en als het een nul is dan is het een positief getal
+als je een negatief getal wilt schrijven dan schrijf je eerst het positieve getal dan zet je dat getal het tegenovergestelde van en doe je plus 1 dus.
+15 = 0000 1111
+-15 = 11110000 +1 => 11110001
+
+als je het andersom wilt doen en je van binair naar decimaal wilt dan is het gewoon terug het binair getal pakken en het tegenovergestelde getal pakken en +1 doen.
+11110001
+00001110+1=> 00001111 en dit getal is 15 en om dat in het getal dat je omzette als meest linkse bit een 1 is weet je dan het -15 is.
+
+In dit talstelse kan je wel getallen optellen 
+
++15 = 0000 1111
+-7  = 1111 1001(1111 0000 +1)
+-------------------------------
+    1 0000 1000 => 0000 1000
+maar 1 valt weg omdat die niet in het bereik van het 8 bit getal ligt  
+
+
+--------------------------
+overflow
+-------------------------------------------------------------------
+soms heb je dat als je twee positieve getallen optelt en je werkt met de twee complemetenatie dat je een foute uitkomst krijg bv.
++3 = 0011
++5 = 0101
+bijde getallen zitten in een 4 bit range en zitten juist want hunt eerste bit is een 0 maar als je die twee optelt dan krijg je 
+-8 = 1000
+-8 omdat de eerste bit een 1 is word het als een negatief getal gelezen dus om juist te zijn zou het zo moeten zijn
+0000 0011
+0000 0101
+---------------
+0000 1000
+want hier is de meest linkse bit een 0 dus is het positief en staat het er dus gewoon +8 zoals het moet 5 +3 = 8 en niet -8
+
+dus - + - is altijd een negatief getal zijn(1) en + + + moet altijd een positief getal zijn(0) als dat niet zo is dan is er overflow
+dus als er overflow is moet je gewoon een next bit aanvulllen met 0 en nog is proberen dan heb je normaal gezien geen last meer van overflow
+
+een ander mogelijkheid om overflow te hebben is dat je 1 niet in een bit meer ligt bv
+ 10101101
+ 10110000
+---------
+101011101=> 01011101
+hier valt de meest linkse bit weg omdat het een 8 bit veld is en en de 1 staat op de 9 de plaats. 
+Hier ook gewoon een groter bereik nemen en je hebt geen overflow meer.
